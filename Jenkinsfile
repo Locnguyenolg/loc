@@ -8,25 +8,25 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Locnguyenolg/loc.git'
+                git branch: 'main', url: 'https://github.com/Locnguyenolg/loc.git'
             }
         }
 
         stage('Install dependencies') {
             steps {
-                sh 'npm ci'
+                bat 'npm ci'
             }
         }
 
         stage('Install Playwright browsers') {
             steps {
-                sh 'npx playwright install --with-deps'
+                bat 'npx playwright install'
             }
         }
 
         stage('Run Playwright Tests') {
             steps {
-                sh 'npx playwright test'
+                bat 'npx playwright test'
             }
         }
     }
